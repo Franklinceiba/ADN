@@ -2,9 +2,11 @@ package com.ceiba.configuracion;
 
 import com.ceiba.usuario.puerto.repositorio.RepositorioCita;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
+import com.ceiba.usuario.servicio.ServicioActualizarCita;
 import com.ceiba.usuario.servicio.ServicioActualizarUsuario;
 import com.ceiba.usuario.servicio.ServicioCrearCita;
 import com.ceiba.usuario.servicio.ServicioCrearUsuario;
+import com.ceiba.usuario.servicio.ServicioEliminarCita;
 import com.ceiba.usuario.servicio.ServicioEliminarUsuario;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,7 +32,17 @@ public class BeanServicio {
     @Bean
     public ServicioCrearCita serviceCrearCita(RepositorioCita repositorioCita) {
     	return new ServicioCrearCita(repositorioCita);
-    	
+    }
+    
+    @Bean
+    public ServicioEliminarCita serviceEliminarCita(RepositorioCita repositorioCita) {
+    	return new ServicioEliminarCita(repositorioCita);
+    }
+    
+    @Bean
+    public ServicioActualizarCita serviceActualizarCita(RepositorioCita repositorioCita) {
+    	return new ServicioActualizarCita(repositorioCita);
+
     }
 
 }
