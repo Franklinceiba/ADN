@@ -2,9 +2,11 @@ package com.ceiba.infraestructura.jdbc;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public interface MapperResult {
 
@@ -22,6 +24,15 @@ public interface MapperResult {
         LocalDateTime resultado = null;
         if (!resultSet.wasNull()) {
             resultado = fecha.toLocalDateTime();
+        }
+        return resultado;
+    } 
+	
+	default LocalTime extraerLocalTime(ResultSet resultSet, String label) throws SQLException {
+        Time fecha = resultSet.getTime(label);
+        LocalTime resultado = null;
+        if (!resultSet.wasNull()) {
+            resultado = fecha.toLocalTime();
         }
         return resultado;
     } 

@@ -19,10 +19,10 @@ public class Cita {
 	private LocalDate fecha;
 	private LocalTime hora;
 	private int valor;
-	private Persona persona;
+	private Long idPersona;
 	private HolidayUtil diaFestivo ;
 	
-	public Cita(Long id, String descripcion, LocalDate fecha, LocalTime hora, Persona persona) {
+	public Cita(Long id, String descripcion, LocalDate fecha, LocalTime hora, Long idPersona) {
 		this.diaFestivo = new HolidayUtil(fecha.getYear());
 		this.validarFechaNoPermitida(fecha, hora, NO_SE_PERMITE_LOS_SABADOS_Y_DOMINGOS);
 		this.validarHorarioPermitidoLunesViernes(fecha, hora, SOLO_SE_PERMITE_EL_SIGUIENTE_HORARIO_LUNES_A_VIERNES);
@@ -32,14 +32,14 @@ public class Cita {
 		this.descripcion = descripcion;
 		this.fecha = fecha;
 		this.hora = hora;
-		this.persona = persona;
+		this.idPersona = idPersona;
 	}
 	
 	
 	private void validarHorarioPermitidoLunesViernes(LocalDate fecha, LocalTime hora, String mensaje) {
 		boolean validarFestivo = this.diaFestivo.isHoliday(fecha.getMonthValue(), fecha.getDayOfMonth());
 		int horaDia = hora.getHour();
-		if (!validarFestivo || horaDia < 8 || horaDia > 16) {
+		if (!validarFestivo && ((horaDia < 8 || horaDia > 16)||(horaDia >= 12 && horaDia < 12))) {
 			throw new ExcepcionValorInvalido(mensaje);
 		}
 	}
@@ -47,7 +47,7 @@ public class Cita {
 	private void validarHorarioPermitidoFestivo(LocalDate fecha, LocalTime hora, String mensaje) {
 		boolean validarFestivo = this.diaFestivo.isHoliday(fecha.getMonthValue(), fecha.getDayOfMonth());
 		int horaDia = hora.getHour();
-		if (validarFestivo || horaDia < 8 || horaDia > 12) {
+		if (validarFestivo && (horaDia < 8 || horaDia > 12)) {
 			throw new ExcepcionValorInvalido(mensaje);
 		}
 	}

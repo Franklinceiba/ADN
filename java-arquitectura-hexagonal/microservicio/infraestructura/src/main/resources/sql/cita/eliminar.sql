@@ -1,2 +1,2 @@
-DELETE FROM `consultoriofv`.`cita`
-WHERE `cita_id` = :id;
+DELETE FROM cita
+WHERE cita_id = :id;

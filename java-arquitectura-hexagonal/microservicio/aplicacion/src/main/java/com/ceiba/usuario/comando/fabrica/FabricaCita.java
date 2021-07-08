@@ -14,7 +14,7 @@ public class FabricaCita {
 				comandoCita.getDescripcion(),
 				comandoCita.getFecha(),
 				comandoCita.getHora(),
-				comandoCita.getPersona()
+				comandoCita.getIdPersona()
 				);
 	}
 }

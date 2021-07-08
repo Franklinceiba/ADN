@@ -21,6 +21,6 @@ public class ComandoCita {
 	private LocalDate fecha;
 	private LocalTime hora;
 	private int valor;
-	private Persona persona;
+	private Long idPersona;
 
 }

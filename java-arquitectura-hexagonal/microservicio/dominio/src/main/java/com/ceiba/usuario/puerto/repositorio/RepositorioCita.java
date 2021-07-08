@@ -27,7 +27,8 @@ public interface RepositorioCita {
 
     /**
      * Permite validar si existe una cita por fecha y hora
-     * @param fecha, hora
+     * @param fecha
+     * @param hora
      * @return si existe o no
      */
     boolean existe(LocalDate fecha, LocalTime hora);

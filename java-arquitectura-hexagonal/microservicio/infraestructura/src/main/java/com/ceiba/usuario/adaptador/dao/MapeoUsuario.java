@@ -13,10 +13,10 @@ public class MapeoUsuario implements RowMapper<DtoUsuario>, MapperResult {
     @Override
     public DtoUsuario mapRow(ResultSet resultSet, int rowNum) throws SQLException {
 
-        Long id = resultSet.getLong("id");
-        String nombre = resultSet.getString("nombre");
-        String clave = resultSet.getString("clave");
-        LocalDateTime fecha = extraerLocalDateTime(resultSet, "fecha_creacion");
+        var id = resultSet.getLong("id");
+        var nombre = resultSet.getString("nombre");
+        var clave = resultSet.getString("clave");
+        var fecha = extraerLocalDateTime(resultSet, "fecha_creacion");
 
         return new DtoUsuario(id,nombre,clave,fecha);
     }
