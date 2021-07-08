@@ -24,7 +24,7 @@ public class Cita {
 	
 	public Cita(Long id, String descripcion, LocalDate fecha, LocalTime hora, Long idPersona) {
 		this.diaFestivo = new HolidayUtil(fecha.getYear());
-		this.validarFechaNoPermitida(fecha, hora, NO_SE_PERMITE_LOS_SABADOS_Y_DOMINGOS);
+		this.validarFechaNoPermitida(fecha, NO_SE_PERMITE_LOS_SABADOS_Y_DOMINGOS);
 		this.validarHorarioPermitidoLunesViernes(fecha, hora, SOLO_SE_PERMITE_EL_SIGUIENTE_HORARIO_LUNES_A_VIERNES);
 		this.validarHorarioPermitidoFestivo(fecha, hora, SOLO_SE_PERMITE_EL_SIGUIENTE_HORARIO_FESTIVOS);
 		this.calcularValor(fecha);
@@ -37,7 +37,8 @@ public class Cita {
 	
 	
 	private void validarHorarioPermitidoLunesViernes(LocalDate fecha, LocalTime hora, String mensaje) {
-		boolean validarFestivo = this.diaFestivo.isHoliday(fecha.getMonthValue(), fecha.getDayOfMonth());
+		int mes = fecha.getMonthValue() - 1;
+		boolean validarFestivo = this.diaFestivo.isHoliday(mes, fecha.getDayOfMonth());
 		int horaDia = hora.getHour();
 		if (!validarFestivo && ((horaDia < 8 || horaDia > 16)||(horaDia >= 12 && horaDia < 12))) {
 			throw new ExcepcionValorInvalido(mensaje);
@@ -45,14 +46,18 @@ public class Cita {
 	}
 	
 	private void validarHorarioPermitidoFestivo(LocalDate fecha, LocalTime hora, String mensaje) {
-		boolean validarFestivo = this.diaFestivo.isHoliday(fecha.getMonthValue(), fecha.getDayOfMonth());
+		int mes = fecha.getMonthValue() - 1;
+		boolean validarFestivo = this.diaFestivo.isHoliday(mes, fecha.getDayOfMonth());
 		int horaDia = hora.getHour();
+		System.out.println("**************************************");
+		System.out.println(validarFestivo);
+		System.out.println("**************************************");
 		if (validarFestivo && (horaDia < 8 || horaDia > 12)) {
 			throw new ExcepcionValorInvalido(mensaje);
 		}
 	}
 	
-	private void validarFechaNoPermitida(LocalDate fecha, LocalTime hora, String mensaje) {
+	private void validarFechaNoPermitida(LocalDate fecha, String mensaje) {
 		int numeroDia = fecha.getDayOfWeek().getValue();
 		if (numeroDia == 6 || numeroDia == 7) {
 			 throw new ExcepcionValorInvalido(mensaje);

@@ -9,7 +9,7 @@ public interface RepositorioPersona {
 	 * @param persona
 	 * @return
 	 */
-	Long Crear(Persona persona);
+	Long crear(Persona persona);
 	
 	/**
 	 * Permite actualizar una persona
@@ -28,5 +28,5 @@ public interface RepositorioPersona {
 	 * @param documento
 	 * @return
 	 */
-	boolean existe(String documento);
+	boolean existe(String tipoDocumento, String documento);
 }

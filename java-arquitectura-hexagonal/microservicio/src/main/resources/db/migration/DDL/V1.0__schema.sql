@@ -28,3 +28,10 @@ create table cita (
    PRIMARY KEY ( cita_id),
    FOREIGN KEY (pers_id) REFERENCES persona(pers_id)
 );
+insert into persona(pers_tipo_documento,
+	pers_documento,
+    pers_nombre,
+    pers_apellido,
+    pers_fecha_nacimiento,
+    pers_celular,
+    pers_email) values( 'cc', '1090482947', 'franklin', 'vasquez', now(), '3177093283', 'franklin@gmail.com');

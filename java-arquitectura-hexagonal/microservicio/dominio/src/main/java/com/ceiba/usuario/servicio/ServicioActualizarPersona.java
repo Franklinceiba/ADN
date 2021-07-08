@@ -20,7 +20,7 @@ public class ServicioActualizarPersona {
 	}
 
 	private void validarExistenciaDocumento(Persona persona) {
-		boolean existeRegistroDocumento = this.repositorioPersona.existe(persona.getDocumento());
+		boolean existeRegistroDocumento = this.repositorioPersona.existe(persona.getTipoDocumento(), persona.getDocumento());
 		if (existeRegistroDocumento) {
 			throw new ExcepcionDuplicidad(PERSONA_YA_REGISTRADA_EN_EL_SISTEMA);
 		}

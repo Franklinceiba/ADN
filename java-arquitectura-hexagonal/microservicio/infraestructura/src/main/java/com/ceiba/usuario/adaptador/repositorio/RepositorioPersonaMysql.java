@@ -30,7 +30,7 @@ public class RepositorioPersonaMysql implements RepositorioPersona {
 	}
 
 	@Override
-	public Long Crear(Persona persona) {
+	public Long crear(Persona persona) {
 		return this.customNamedParameterJdbcTemplate.crear(persona, sqlCrear);
 	}
 
@@ -48,9 +48,10 @@ public class RepositorioPersonaMysql implements RepositorioPersona {
 	}
 
 	@Override
-	public boolean existe(String documento) {
+	public boolean existe(String tipoDocumento,String documento) {
 		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
 		parameterSource.addValue("documento", documento);
+		parameterSource.addValue("tipoDocumento", tipoDocumento);
 		
 		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,  parameterSource, Boolean.class);
 	}

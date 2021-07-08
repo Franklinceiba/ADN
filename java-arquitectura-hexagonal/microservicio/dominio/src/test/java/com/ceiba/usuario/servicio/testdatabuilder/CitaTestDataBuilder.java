@@ -11,12 +11,10 @@ public class CitaTestDataBuilder {
 	private String descripcion;
 	private LocalDate fecha;
 	private LocalTime hora;
-	private int valor;
 	private Long idPersona;
 	
 	public CitaTestDataBuilder() {
 		descripcion = "Presento sintomas de tos";
-		valor = 0;
 		idPersona = 1l;
 	}
 	

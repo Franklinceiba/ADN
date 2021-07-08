@@ -16,11 +16,11 @@ public class ServicioCrearPersona {
 	
 	public Long ejecutar(Persona persona) {
 		validarExistenciaDocumento(persona);
-		return this.repositorioPersona.Crear(persona);
+		return this.repositorioPersona.crear(persona);
 	}
 	
 	private void validarExistenciaDocumento(Persona persona) {
-		boolean existeRegistroDocumento = this.repositorioPersona.existe(persona.getDocumento());
+		boolean existeRegistroDocumento = this.repositorioPersona.existe(persona.getTipoDocumento(), persona.getDocumento());
 		if (existeRegistroDocumento) {
 			throw new ExcepcionDuplicidad(PERSONA_YA_REGISTRADA_EN_EL_SISTEMA);
 		}

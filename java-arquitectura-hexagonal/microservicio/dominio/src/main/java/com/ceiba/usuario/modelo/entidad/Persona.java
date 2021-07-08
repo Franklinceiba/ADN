@@ -15,6 +15,7 @@ public class Persona {
 	private LocalDate fechaNacimiento;
 	private String celular;
 	private String email;
+	
 	public Persona(Long id, String tipoDocumento, String documento, String nombre, String apellido,
 			LocalDate fechaNacimiento, String celular, String email) {
 		this.id = id;
@@ -26,6 +27,8 @@ public class Persona {
 		this.celular = celular;
 		this.email = email;
 	}
+	
+	
 	
 	
 }

@@ -3,8 +3,6 @@ package com.ceiba.usuario.comando;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import com.ceiba.usuario.modelo.entidad.Persona;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
