@@ -1,4 +1,3 @@
-insert into usuario(nombre,clave,fecha_creacion) values('test','1234',now());
 insert into persona(pers_tipo_documento,
 	pers_documento,
     pers_nombre,
