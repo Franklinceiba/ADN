@@ -33,10 +33,10 @@ public class ServicioActualizarCitaTest {
 		RepositorioCita repositorioCita = Mockito.mock(RepositorioCita.class);
 		ServicioActualizarCita servicioActualizarCita = new ServicioActualizarCita(repositorioCita);
 		servicioActualizarCita.ejecutar(cita);
-		// act - assert
 		Long idPersona = 1L;
 		Long id = 1L;
 		int fecha = 2021;
+		// act - assert
 		Assert.assertEquals(cita.getIdPersona(), idPersona);
 		Assert.assertEquals(cita.getId(), id);
 		Assert.assertEquals(cita.getDiaFestivo().getYear(), fecha);
