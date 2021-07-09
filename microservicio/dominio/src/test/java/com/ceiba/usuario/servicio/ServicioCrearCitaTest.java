@@ -41,6 +41,14 @@ public class ServicioCrearCitaTest {
 	}
 	
 	@Test
+	public void validarFechaNoPermitidaDomingoFestivoTest() {
+		// arrange
+		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2019, 12, 8), LocalTime.of(16, 0));
+		// act - assert
+		BasePrueba.assertThrows(() -> citaTestDataBuilder.build(), ExcepcionValorInvalido.class, "Solo se permite sacar cita los festivos en el siguiente horario extablecido de 8:00 a.m a 11:30 a.m");
+	}
+	
+	@Test
 	public void validarFechaNoPermitidaFestivoTest() {
 		// arrange
 		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 5), LocalTime.of(15, 0));

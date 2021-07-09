@@ -24,9 +24,9 @@ public class Cita {
 	
 	public Cita(Long id, String descripcion, LocalDate fecha, LocalTime hora, Long idPersona) {
 		this.diaFestivo = new HolidayUtil(fecha.getYear());
-		this.validarFechaNoPermitida(fecha, NO_SE_PERMITE_LOS_SABADOS_Y_DOMINGOS);
 		this.validarHorarioPermitidoLunesViernes(fecha, hora, SOLO_SE_PERMITE_EL_SIGUIENTE_HORARIO_LUNES_A_VIERNES);
 		this.validarHorarioPermitidoFestivo(fecha, hora, SOLO_SE_PERMITE_EL_SIGUIENTE_HORARIO_FESTIVOS);
+		this.validarFechaNoPermitida(fecha, NO_SE_PERMITE_LOS_SABADOS_Y_DOMINGOS);
 		this.calcularValor(fecha);
 		this.id = id;
 		this.descripcion = descripcion;
