@@ -41,7 +41,7 @@ public class ComandoControladorPersonaTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(persona)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 2}"));
+                .andExpect(content().json("{'valor': 3}"));
     }
     
     @Test

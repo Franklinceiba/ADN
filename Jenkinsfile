@@ -11,7 +11,6 @@ pipeline {
 
   tools {
     jdk 'JDK11_Centos'
-    gradle 'Gradle6.0.1_Centos'
   }
 
   stages{
@@ -38,7 +37,8 @@ pipeline {
     stage('Clean') {
       steps{
         echo "------------>Clean<------------"
-        sh 'gradle --b ./microservicio/build.gradle clean'
+        sh 'chmod +x gradlew'
+        sh './gradlew --b ./microservicio/build.gradle clean'
 
       }
     }
@@ -47,12 +47,12 @@ pipeline {
       steps{
         
 	echo "------------>Compile project<------------"
-        sh 'gradle --b ./microservicio/build.gradle compileJava'
+        sh './gradlew --b ./microservicio/build.gradle compileJava'
         
 	echo "------------>Unit Tests<------------"
-        sh 'gradle --b ./microservicio/build.gradle clean'
+        sh './gradlew --b ./microservicio/build.gradle clean'
 	sh 'gradle --b ./microservicio/build.gradle test'
-        sh 'gradle --b ./microservicio/build.gradle jacocoTestReport' 
+        sh './gradlew --b ./microservicio/build.gradle jacocoTestReport' 
       }
     }
 
@@ -70,7 +70,7 @@ pipeline {
     stage('Build') {
       steps {
         echo "------------>Build<------------"
-	    sh 'gradle --b ./microservicio/build.gradle build -x test'
+	    sh './gradlew --b ./microservicio/build.gradle build -x test'
       }
     }
   }
