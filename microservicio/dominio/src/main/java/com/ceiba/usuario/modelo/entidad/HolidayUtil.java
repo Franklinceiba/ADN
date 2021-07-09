@@ -65,19 +65,19 @@ public class HolidayUtil {
 		case 1:
 			date.add(Calendar.DATE, 1);
 			break;
-			case 3:
+		case 3:
 			date.add(Calendar.DATE, 6);
 			break;
-				case 4:
+		case 4:
 			date.add(Calendar.DATE, 5);
 			break;
 		case 5:
 			date.add(Calendar.DATE, 4);
 			break;
-				case 6:
+		case 6:
 			date.add(Calendar.DATE, 3);
 			break;
-				case 7:
+		case 7:
 			date.add(Calendar.DATE, 2);
 			break;
 		default:

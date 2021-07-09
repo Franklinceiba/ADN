@@ -31,6 +31,7 @@ public class ServicioActualizarCitaTest {
 		// arrange
 		Cita cita = new CitaTestDataBuilder().conId(1L).conFechaYHora(LocalDate.of(2021, 7, 6), LocalTime.of(15, 0)).build();
 		RepositorioCita repositorioCita = Mockito.mock(RepositorioCita.class);
+		Mockito.when(repositorioCita.existe(Mockito.any(), Mockito.any())).thenReturn(false);
 		ServicioActualizarCita servicioActualizarCita = new ServicioActualizarCita(repositorioCita);
 		servicioActualizarCita.ejecutar(cita);
 		Long idPersona = 1L;
