@@ -117,8 +117,8 @@ public class ServicioCrearCitaTest {
 		RepositorioCita repositorioCita = Mockito.mock(RepositorioCita.class);
 		ServicioCrearCita servicioCrearCita = new ServicioCrearCita(repositorioCita);
 		servicioCrearCita.ejecutar(cita);
-		// act - assert
 		String descripcion = "Presento sintomas de tos";
+		// act - assert
 		Assert.assertEquals(cita.getDescripcion(), descripcion);
 	}
 

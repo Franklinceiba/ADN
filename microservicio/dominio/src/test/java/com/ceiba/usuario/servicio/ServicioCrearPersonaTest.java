@@ -30,14 +30,15 @@ public class ServicioCrearPersonaTest {
         // arrange
 		Persona persona = new PersonaTestDataBuilder().conId(1L).build();
 		RepositorioPersona repositorioPersona = Mockito.mock(RepositorioPersona.class);
+		Mockito.when(repositorioPersona.existe(Mockito.any(), Mockito.any())).thenReturn(false);
 		ServicioCrearPersona servicioCrearPersona = new ServicioCrearPersona(repositorioPersona);
-		servicioCrearPersona.ejecutar(persona);
-		// act - assert
 		String nombre = "luis";
 		String apellido = "pineda";
 		LocalDate fechaNacimiento = LocalDate.now();
 		String email = "franklin@gmail.com";
 		Long id = 1L;
+		servicioCrearPersona.ejecutar(persona);
+		// act - assert
 		Assert.assertEquals(persona.getNombre(), nombre);
 		Assert.assertEquals(persona.getApellido(), apellido);
 		Assert.assertEquals(persona.getFechaNacimiento(), fechaNacimiento);

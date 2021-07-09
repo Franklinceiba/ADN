@@ -30,8 +30,8 @@ public class ServicioActualizarPersonaTest {
 		RepositorioPersona repositorioPersona = Mockito.mock(RepositorioPersona.class);
 		ServicioActualizarPersona servicioActualizarPersona = new ServicioActualizarPersona(repositorioPersona);
 		servicioActualizarPersona.ejecutar(persona);
-		// act - assert
 		String celular = "3177093283";
+		// act - assert
 		Assert.assertEquals(persona.getCelular(), celular);
 	}
 }
