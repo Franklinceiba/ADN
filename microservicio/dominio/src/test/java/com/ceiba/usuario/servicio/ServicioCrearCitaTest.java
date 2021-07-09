@@ -25,6 +25,14 @@ public class ServicioCrearCitaTest {
 	}
 	
 	@Test
+	public void validarFechaNoPermitidaLunesAViernesHorarioAlmuerzoTest() {
+		// arrange
+		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 6), LocalTime.of(13, 0));
+		// act - assert
+		BasePrueba.assertThrows(() -> citaTestDataBuilder.build(), ExcepcionValorInvalido.class, "Solo se permite sacar cita de lunes a viernes en el siguiente horario extablecido de 8:00 a.m a 11:30 a.m y de 2:00 p.m a 3:30 p.m");
+	}
+	
+	@Test
 	public void validarFechaNoPermitidaSabadoTest() {
 		// arrange
 		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 3), LocalTime.of(10, 0));
