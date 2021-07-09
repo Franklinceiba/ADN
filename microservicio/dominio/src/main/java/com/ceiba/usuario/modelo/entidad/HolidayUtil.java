@@ -15,9 +15,6 @@ public class HolidayUtil {
      * @param year Year to be used as reference.
      */
     public HolidayUtil(int year) {
-    	System.out.println("**************************************");
-		System.out.println(year);
-		System.out.println("**************************************");
         this.year = year;
         this.holidays = new ArrayList<>();
         int a = year % 19;

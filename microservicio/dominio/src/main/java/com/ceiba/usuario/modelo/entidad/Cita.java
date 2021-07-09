@@ -49,9 +49,6 @@ public class Cita {
 		int mes = fecha.getMonthValue() - 1;
 		boolean validarFestivo = this.diaFestivo.isHoliday(mes, fecha.getDayOfMonth());
 		int horaDia = hora.getHour();
-		System.out.println("**************************************");
-		System.out.println(validarFestivo);
-		System.out.println("**************************************");
 		if (validarFestivo && (horaDia < 8 || horaDia > 12)) {
 			throw new ExcepcionValorInvalido(mensaje);
 		}
@@ -65,7 +62,8 @@ public class Cita {
 	}
 	
 	private void calcularValor(LocalDate fecha) {
-		boolean validarFestivo = this.diaFestivo.isHoliday(fecha.getMonthValue(), fecha.getDayOfMonth());
+		int mes = fecha.getMonthValue() - 1;
+		boolean validarFestivo = this.diaFestivo.isHoliday(mes, fecha.getDayOfMonth());
 		if (validarFestivo) {
 			this.valor = 60000;
 		} else {
