@@ -40,7 +40,7 @@ public class Cita {
 		int mes = fecha.getMonthValue() - 1;
 		boolean validarFestivo = this.diaFestivo.isHoliday(mes, fecha.getDayOfMonth());
 		int horaDia = hora.getHour();
-		if (!validarFestivo && (horaDia < 8 || horaDia > 16||(horaDia >= 12 && horaDia < 14))) {
+		if (!validarFestivo && (horaDia < 8 || horaDia > 16||horaDia >= 12 && horaDia < 14)) {
 			throw new ExcepcionValorInvalido(mensaje);
 		}
 	}
