@@ -38,7 +38,7 @@ pipeline {
     stage('Clean') {
       steps{
         echo "------------>Clean<------------"
-        sh 'gradle --b ./consultoriofv/build.gradle clean'
+        sh 'gradle --b ./microservicio/build.gradle clean'
 
       }
     }
@@ -47,12 +47,12 @@ pipeline {
       steps{
         
 	echo "------------>Compile project<------------"
-        sh 'gradle --b ./consultoriofv/build.gradle compileJava'
+        sh 'gradle --b ./microservicio/build.gradle compileJava'
         
 	echo "------------>Unit Tests<------------"
-        sh 'gradle --b ./consultoriofv/build.gradle clean'
-	sh 'gradle --b ./consultoriofv/build.gradle test'
-        sh 'gradle --b ./consultoriofv/build.gradle jacocoTestReport' 
+        sh 'gradle --b ./microservicio/build.gradle clean'
+	sh 'gradle --b ./microservicio/build.gradle test'
+        sh 'gradle --b ./microservicio/build.gradle jacocoTestReport' 
       }
     }
 
@@ -70,7 +70,7 @@ pipeline {
     stage('Build') {
       steps {
         echo "------------>Build<------------"
-	    sh 'gradle --b ./consultoriofv/build.gradle build -x test'
+	    sh 'gradle --b ./microservicio/build.gradle build -x test'
       }
     }
   }
