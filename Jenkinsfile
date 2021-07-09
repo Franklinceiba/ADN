@@ -51,7 +51,7 @@ pipeline {
         
 	echo "------------>Unit Tests<------------"
         sh './gradlew --b ./microservicio/build.gradle clean'
-	sh 'gradle --b ./microservicio/build.gradle test'
+	sh './gradlew --b ./microservicio/build.gradle test'
         sh './gradlew --b ./microservicio/build.gradle jacocoTestReport' 
       }
     }
