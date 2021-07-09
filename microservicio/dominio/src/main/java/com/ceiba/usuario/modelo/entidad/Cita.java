@@ -40,9 +40,17 @@ public class Cita {
 		int mes = fecha.getMonthValue() - 1;
 		boolean validarFestivo = this.diaFestivo.isHoliday(mes, fecha.getDayOfMonth());
 		int horaDia = hora.getHour();
-		if (!validarFestivo && (horaDia < 8 || horaDia > 16||horaDia >= 12 && horaDia < 14)) {
+		if (!validarFestivo && fueraHorarioOficina(horaDia)) {
 			throw new ExcepcionValorInvalido(mensaje);
 		}
+	}
+	
+	private boolean fueraHorarioOficina(int horaDia) {
+		boolean validar = false;
+		if (horaDia < 8 || horaDia > 16||horaDia >= 12 && horaDia < 14) {
+			validar = true;
+		}
+		return validar;
 	}
 	
 	private void validarHorarioPermitidoFestivo(LocalDate fecha, LocalTime hora, String mensaje) {
