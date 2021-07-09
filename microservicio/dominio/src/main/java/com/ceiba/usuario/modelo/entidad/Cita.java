@@ -47,7 +47,7 @@ public class Cita {
 	
 	private boolean fueraHorarioOficina(int horaDia) {
 		boolean validar = false;
-		if (horaDia < 8 || horaDia > 16||horaDia >= 12 && horaDia < 14) {
+		if (horaDia < 8 || horaDia > 16 ||(horaDia >= 12 && horaDia < 14)) {
 			validar = true;
 		}
 		return validar;
