@@ -1,5 +1,6 @@
 package com.ceiba.usuario.servicio;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -20,5 +21,17 @@ public class ServicioActualizarPersonaTest {
 		ServicioActualizarPersona servicioActualizarPersona = new ServicioActualizarPersona(repositorioPersona);
 		// act - assert
         BasePrueba.assertThrows(() -> servicioActualizarPersona.ejecutar(persona), ExcepcionDuplicidad.class,"No se puede registrar la persona por que existe un registro con este documento");
+	}
+	
+	@Test
+    public void validarPersonaTest() {
+        // arrange
+		Persona persona = new PersonaTestDataBuilder().build();
+		RepositorioPersona repositorioPersona = Mockito.mock(RepositorioPersona.class);
+		ServicioActualizarPersona servicioActualizarPersona = new ServicioActualizarPersona(repositorioPersona);
+		servicioActualizarPersona.ejecutar(persona);
+		// act - assert
+		String celular = "3177093283";
+		Assert.assertEquals(persona.getCelular(), celular);
 	}
 }

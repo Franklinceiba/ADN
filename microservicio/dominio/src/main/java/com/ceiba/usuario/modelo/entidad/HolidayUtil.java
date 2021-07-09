@@ -2,7 +2,6 @@ package com.ceiba.usuario.modelo.entidad;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class HolidayUtil {
 	private int year;
@@ -121,60 +120,5 @@ public class HolidayUtil {
 	 */
 	public int getYear() {
 		return year;
-	}
-
-	/**
-	 * Get the next available business day from a given date and days amount
-	 * 
-	 * @param date Start date to count from
-	 * @param days Number of days to count
-	 * @return Date representation of the next business day
-	 */
-	public static Date getNextBusinessDay(Date date, int days) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
-		HolidayUtil lobHolidayUtil = new HolidayUtil(calendar.get(Calendar.YEAR));
-		while (days > 0) {
-			calendar.add(Calendar.DATE, 1);
-			if (calendar.get(Calendar.YEAR) != lobHolidayUtil.getYear()) {
-				lobHolidayUtil = new HolidayUtil(calendar.get(Calendar.YEAR));
-			}
-			int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-			if (dayOfWeek != 1 && dayOfWeek != 7
-					&& !lobHolidayUtil.isHoliday(calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE))) {
-				days--;
-			}
-		}
-		return calendar.getTime();
-	}
-
-	/**
-	 * Get the amount of business days between two dates
-	 * 
-	 * @param dateInit Start date
-	 * @param dateEnd  End date
-	 * @return Amount for business days
-	 */
-	public static int countBusinessDays(Date dateInit, Date dateEnd) {
-		Calendar limitDay = Calendar.getInstance();
-		int days = 0;
-		if (dateEnd != null) {
-			limitDay.setTime(dateEnd);
-		}
-		Calendar startDay = Calendar.getInstance();
-		startDay.setTime(dateInit);
-		HolidayUtil lobHolidayUtil = new HolidayUtil(startDay.get(Calendar.YEAR));
-		while (startDay.getTime().before(limitDay.getTime())) {
-			startDay.add(Calendar.DATE, 1);
-			if (startDay.get(Calendar.YEAR) != lobHolidayUtil.getYear()) {
-				lobHolidayUtil = new HolidayUtil(startDay.get(Calendar.YEAR));
-			}
-			int dayOfWeek = startDay.get(Calendar.DAY_OF_WEEK);
-			if (dayOfWeek != 1 && dayOfWeek != 7
-					&& !lobHolidayUtil.isHoliday(startDay.get(Calendar.MONTH), startDay.get(Calendar.DATE))) {
-				days++;
-			}
-		}
-		return days;
 	}
 }

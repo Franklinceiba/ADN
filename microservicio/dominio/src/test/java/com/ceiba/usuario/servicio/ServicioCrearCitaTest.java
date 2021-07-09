@@ -77,5 +77,17 @@ public class ServicioCrearCitaTest {
 		BasePrueba.assertThrows(() -> servicioCrearCita.ejecutar(cita), ExcepcionDuplicidad.class, "No se puede registrar cita en este horario por que ya hay una cita registrada");
 		
 	}
+	
+	@Test
+	public void validarCitaTest() {
+		// arrange
+		Cita cita = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 6), LocalTime.of(10, 0)).build();
+		RepositorioCita repositorioCita = Mockito.mock(RepositorioCita.class);
+		ServicioCrearCita servicioCrearCita = new ServicioCrearCita(repositorioCita);
+		servicioCrearCita.ejecutar(cita);
+		// act - assert
+		String descripcion = "Presento sintomas de tos";
+		Assert.assertEquals(cita.getDescripcion(), descripcion);
+	}
 
 }

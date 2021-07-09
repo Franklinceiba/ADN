@@ -1,5 +1,8 @@
 package com.ceiba.usuario.servicio;
 
+import java.time.LocalDate;
+
+import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -20,6 +23,26 @@ public class ServicioCrearPersonaTest {
 		ServicioCrearPersona servicioCrearPersona = new ServicioCrearPersona(repositorioPersona);
 		// act - assert
         BasePrueba.assertThrows(() -> servicioCrearPersona.ejecutar(persona), ExcepcionDuplicidad.class,"No se puede registrar la persona por que existe un registro con este documento");
+	}
+	
+	@Test
+    public void validarPersonaTest() {
+        // arrange
+		Persona persona = new PersonaTestDataBuilder().conId(1L).build();
+		RepositorioPersona repositorioPersona = Mockito.mock(RepositorioPersona.class);
+		ServicioCrearPersona servicioCrearPersona = new ServicioCrearPersona(repositorioPersona);
+		servicioCrearPersona.ejecutar(persona);
+		// act - assert
+		String nombre = "luis";
+		String apellido = "pineda";
+		LocalDate fechaNacimiento = LocalDate.now();
+		String email = "franklin@gmail.com";
+		Long id = 1L;
+		Assert.assertEquals(persona.getNombre(), nombre);
+		Assert.assertEquals(persona.getApellido(), apellido);
+		Assert.assertEquals(persona.getFechaNacimiento(), fechaNacimiento);
+		Assert.assertEquals(persona.getEmail(), email);
+		Assert.assertEquals(persona.getId(), id);
 	}
 	
 }

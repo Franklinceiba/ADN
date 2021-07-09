@@ -3,6 +3,7 @@ package com.ceiba.usuario.servicio;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -23,5 +24,22 @@ public class ServicioActualizarCitaTest {
 		ServicioActualizarCita servicioActualizarCita = new ServicioActualizarCita(repositorioCita);
 		// act - assert
 		BasePrueba.assertThrows(() -> servicioActualizarCita.ejecutar(cita), ExcepcionDuplicidad.class,"No se puede registrar cita en este horario por que ya hay una cita registrada");
+	}
+	
+	@Test
+	public void validarCitaTest() {
+		// arrange
+		Cita cita = new CitaTestDataBuilder().conId(1L).conFechaYHora(LocalDate.of(2021, 7, 6), LocalTime.of(15, 0)).build();
+		RepositorioCita repositorioCita = Mockito.mock(RepositorioCita.class);
+		ServicioActualizarCita servicioActualizarCita = new ServicioActualizarCita(repositorioCita);
+		servicioActualizarCita.ejecutar(cita);
+		// act - assert
+		Long idPersona = 1L;
+		Long id = 1L;
+		int fecha = 2021;
+		Assert.assertEquals(cita.getIdPersona(), idPersona);
+		Assert.assertEquals(cita.getId(), id);
+		Assert.assertEquals(cita.getDiaFestivo().getYear(), fecha);
+		
 	}
 }
