@@ -38,7 +38,7 @@ public class ComandoControladorCitaTest {
     @Test
     public void crear() throws Exception{
         // arrange
-    	ComandoCita cita = new ComandoCitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 6), LocalTime.of(10, 0)).build();
+    	ComandoCita cita = new ComandoCitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 6), "10:00").build();
     	
     	// act - assert
     	mocMvc.perform(post("/citas")
@@ -52,7 +52,7 @@ public class ComandoControladorCitaTest {
     public void actualizar() throws Exception{
         // arrange
     	Long id = 2L;
-    	ComandoCita cita = new ComandoCitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 5), LocalTime.of(11, 0)).build();
+    	ComandoCita cita = new ComandoCitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 5), "11:00").build();
     	
     	// act - assert
     	  mocMvc.perform(put("/citas/{id}",id)
@@ -65,7 +65,7 @@ public class ComandoControladorCitaTest {
     public void actualizarFallo() throws Exception{
         // arrange
     	Long id = 2L;
-    	ComandoCita cita = new ComandoCitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 5), LocalTime.of(10, 30)).build();
+    	ComandoCita cita = new ComandoCitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 5), "10:30").build();
     	
     	// act - assert
     	  mocMvc.perform(put("/citas/{id}",id)

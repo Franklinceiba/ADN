@@ -4,7 +4,7 @@ insert into persona(pers_tipo_documento,
     pers_apellido,
     pers_fecha_nacimiento,
     pers_celular,
-    pers_email) values( 'cc', '1090482947', 'franklin', 'vasquez', now(), '3177093283', 'franklin@gmail.com');
+    pers_email) values( 'cc', '10904829478', 'franklin', 'vasquez', now(), '3177093283', 'franklin@gmail.com');
 INSERT INTO cita
 (cita_descripcion,
 cita_fecha,

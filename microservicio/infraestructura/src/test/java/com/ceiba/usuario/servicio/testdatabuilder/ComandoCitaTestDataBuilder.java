@@ -1,7 +1,6 @@
 package com.ceiba.usuario.servicio.testdatabuilder;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 import com.ceiba.usuario.comando.ComandoCita;
 
@@ -10,7 +9,7 @@ public class ComandoCitaTestDataBuilder {
 	private Long id;
 	private String descripcion;
 	private LocalDate fecha;
-	private LocalTime hora;
+	private String hora;
 	private int valor;
 	private Long idPersona;
 	
@@ -20,9 +19,9 @@ public class ComandoCitaTestDataBuilder {
 		idPersona = 1l;
 	}
 	
-	public ComandoCitaTestDataBuilder conFechaYHora(LocalDate localDate, LocalTime localTime) {
+	public ComandoCitaTestDataBuilder conFechaYHora(LocalDate localDate, String string) {
 		this.fecha = localDate;
-		this.hora = localTime;
+		this.hora = string;
 		return this;
 	}
 	

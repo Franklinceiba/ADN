@@ -37,4 +37,30 @@ public class ConsultaControladorPersonaTest {
                 .andExpect(jsonPath("$[0].nombre", is("franklin")));
     }
     
+    @Test
+    public void listarId() throws Exception {
+        // arrange
+    	Long id = 1L;
+
+        // act - assert
+        mocMvc.perform(get("/personas/id/{id}",id)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("nombre", is("franklin")));
+    }
+    
+    @Test
+    public void listarDocumento() throws Exception {
+        // arrange
+    	String documento = "1090482947";
+
+        // act - assert
+        mocMvc.perform(get("/personas/documento/{documento}",documento)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].nombre", is("franklin")));
+    }
+    
+    
 }

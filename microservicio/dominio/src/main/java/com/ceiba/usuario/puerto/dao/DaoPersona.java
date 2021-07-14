@@ -12,4 +12,18 @@ public interface DaoPersona {
 	 * @return las personas
 	 */
 	List<DtoPersona> listar();
+	
+	/**
+	 * Permite listar persona por id
+	 * 
+	 * @return las persona
+	 */
+	DtoPersona listarId(Long id);
+	
+	/**
+	 * Permite listar persona por documento
+	 * 
+	 * @return las persona
+	 */
+	List<DtoPersona> listarDocumento(String documento);
 }

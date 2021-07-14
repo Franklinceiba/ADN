@@ -17,9 +17,9 @@ import com.ceiba.usuario.servicio.testdatabuilder.CitaTestDataBuilder;
 public class ServicioCrearCitaTest {
 	
 	@Test
-	public void validarFechaNoPermitidaLunesAViernesTest() {
+	public void validarFechaNoPermitidaLunesAViernesNocturnoTest() {
 		// arrange
-		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 6), LocalTime.of(18, 0));
+		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 6), LocalTime.of(17, 0));
 		// act - assert
 		BasePrueba.assertThrows(() -> citaTestDataBuilder.build(), ExcepcionValorInvalido.class, "Solo se permite sacar cita de lunes a viernes en el siguiente horario extablecido de 8:00 a.m a 11:30 a.m y de 2:00 p.m a 3:30 p.m");
 	}
@@ -27,15 +27,23 @@ public class ServicioCrearCitaTest {
 	@Test
 	public void validarFechaNoPermitidaLunesAViernesHorarioAlmuerzoTest() {
 		// arrange
+		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 6), LocalTime.of(12, 0));
+		// act - assert
+		BasePrueba.assertThrows(() -> citaTestDataBuilder.build(), ExcepcionValorInvalido.class, "Solo se permite sacar cita de lunes a viernes en el siguiente horario extablecido de 8:00 a.m a 11:30 a.m y de 2:00 p.m a 3:30 p.m");
+	}
+	
+	@Test
+	public void validarFechaNoPermitidaLunesAViernesHorarioTardeTest() {
+		// arrange
 		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 6), LocalTime.of(13, 0));
 		// act - assert
 		BasePrueba.assertThrows(() -> citaTestDataBuilder.build(), ExcepcionValorInvalido.class, "Solo se permite sacar cita de lunes a viernes en el siguiente horario extablecido de 8:00 a.m a 11:30 a.m y de 2:00 p.m a 3:30 p.m");
 	}
 	
 	@Test
-	public void validarFechaNoPermitidaLunesAViernesHorarioSuenoTest() {
+	public void validarFechaNoPermitidaLunesAViernesHorarioMananaTest() {
 		// arrange
-		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 6), LocalTime.of(5, 0));
+		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 6), LocalTime.of(7, 0));
 		// act - assert
 		BasePrueba.assertThrows(() -> citaTestDataBuilder.build(), ExcepcionValorInvalido.class, "Solo se permite sacar cita de lunes a viernes en el siguiente horario extablecido de 8:00 a.m a 11:30 a.m y de 2:00 p.m a 3:30 p.m");
 	}
@@ -59,7 +67,7 @@ public class ServicioCrearCitaTest {
 	@Test
 	public void validarFechaNoPermitidaDomingoFestivoTest() {
 		// arrange
-		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2019, 12, 8), LocalTime.of(16, 0));
+		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2019, 12, 8), LocalTime.of(13, 0));
 		// act - assert
 		BasePrueba.assertThrows(() -> citaTestDataBuilder.build(), ExcepcionValorInvalido.class, "Solo se permite sacar cita los festivos en el siguiente horario extablecido de 8:00 a.m a 11:30 a.m");
 	}
@@ -67,7 +75,7 @@ public class ServicioCrearCitaTest {
 	@Test
 	public void validarFechaNoPermitidaFestivoTest() {
 		// arrange
-		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 5), LocalTime.of(15, 0));
+		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 5), LocalTime.of(18, 0));
 		// act - assert
 		BasePrueba.assertThrows(() -> citaTestDataBuilder.build(), ExcepcionValorInvalido.class, "Solo se permite sacar cita los festivos en el siguiente horario extablecido de 8:00 a.m a 11:30 a.m");
 	}
@@ -75,15 +83,32 @@ public class ServicioCrearCitaTest {
 	@Test
 	public void validarFechaNoPermitidaFestivoHorarioPermitidoTest() {
 		// arrange
-		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 5), LocalTime.of(6, 0));
+		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 5), LocalTime.of(7, 0));
 		// act - assert
 		BasePrueba.assertThrows(() -> citaTestDataBuilder.build(), ExcepcionValorInvalido.class, "Solo se permite sacar cita los festivos en el siguiente horario extablecido de 8:00 a.m a 11:30 a.m");
 	}
 	
 	@Test
+	public void validarFechaNoPermitidaFestivoHorarioPermitidoAlmuerzoTest() {
+		// arrange
+		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 5), LocalTime.of(12, 0));
+		// act - assert
+		BasePrueba.assertThrows(() -> citaTestDataBuilder.build(), ExcepcionValorInvalido.class, "Solo se permite sacar cita los festivos en el siguiente horario extablecido de 8:00 a.m a 11:30 a.m");
+	}
+	
+	@Test
+	public void validarHorarioPermitidoTest() {
+		// arrange
+		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 5), LocalTime.of(11, 50));
+		// act - assert
+		BasePrueba.assertThrows(() -> citaTestDataBuilder.build(), ExcepcionValorInvalido.class, "No se permite estos minutos para solicitar cita, solo se permite a las :00 o :30");
+	}
+	
+	
+	@Test
 	public void validarCitaValorLunesAViernesTest() {
 		// arrange
-		Cita cita = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 6), LocalTime.of(10, 0)).build();
+		Cita cita = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 6), LocalTime.of(8, 0)).build();
 		int valorLunesAViernes = 30000;
 		//assert
 		Assert.assertEquals(cita.getValor(), valorLunesAViernes);
@@ -92,7 +117,7 @@ public class ServicioCrearCitaTest {
 	@Test
 	public void validarCitaValorFestivoTest() {
 		// arrange
-		Cita cita = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 5), LocalTime.of(10, 0)).build();
+		Cita cita = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 5), LocalTime.of(11, 30)).build();
 		int valorFestivo = 60000;
 		//assert
 		Assert.assertEquals(cita.getValor(), valorFestivo);
@@ -113,7 +138,7 @@ public class ServicioCrearCitaTest {
 	@Test
 	public void validarCitaTest() {
 		// arrange
-		Cita cita = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 6), LocalTime.of(10, 0)).build();
+		Cita cita = new CitaTestDataBuilder().conFechaYHora(LocalDate.of(2021, 7, 6), LocalTime.of(11, 30)).build();
 		RepositorioCita repositorioCita = Mockito.mock(RepositorioCita.class);
 		ServicioCrearCita servicioCrearCita = new ServicioCrearCita(repositorioCita);
 		servicioCrearCita.ejecutar(cita);
