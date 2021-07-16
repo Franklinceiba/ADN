@@ -24,6 +24,9 @@ public class RepositorioPersonaMysql implements RepositorioPersona {
 	
 	@SqlStatement(namespace = "persona", value = "existe")
 	private static String sqlExiste;
+	
+	@SqlStatement(namespace = "persona", value = "existePorActualizacion")
+	private static String sqlExistePorActualizacion;
 
 	public RepositorioPersonaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
 		this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -54,6 +57,16 @@ public class RepositorioPersonaMysql implements RepositorioPersona {
 		parameterSource.addValue("tipoDocumento", tipoDocumento);
 		
 		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,  parameterSource, Boolean.class);
+	}
+	
+	@Override
+	public boolean existePorActualizar(String tipoDocumento,String documento, Long id) {
+		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+		parameterSource.addValue("documento", documento);
+		parameterSource.addValue("tipoDocumento", tipoDocumento);
+		parameterSource.addValue("id", id);
+		
+		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistePorActualizacion,  parameterSource, Boolean.class);
 	}
 	
 	

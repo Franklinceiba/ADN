@@ -32,5 +32,13 @@ public interface RepositorioCita {
      * @return si existe o no
      */
     boolean existe(LocalDate fecha, LocalTime hora);
+    
+    /**
+     * Permite validar si existe una cita por fecha, hora por id
+     * @param fecha
+     * @param hora
+     * @return si existe o no
+     */
+    boolean existePorId(LocalDate fecha, LocalTime hora,Long id);
 
 }

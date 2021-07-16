@@ -24,9 +24,16 @@ public interface RepositorioPersona {
 	void eliminar(Long id);
 	
 	/**
-	 * Permite validar si existe una persona por el documento
+	 * Permite validar si existe una persona por el tipo de documento y documento
 	 * @param documento
 	 * @return
 	 */
 	boolean existe(String tipoDocumento, String documento);
+	
+	/**
+	 * Permite validar si existe una persona por el tipo documento y documento, diferente al original
+	 * @param documento
+	 * @return
+	 */
+	boolean existePorActualizar(String tipoDocumento, String documento, Long id);
 }

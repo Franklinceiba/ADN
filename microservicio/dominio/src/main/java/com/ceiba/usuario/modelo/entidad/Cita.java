@@ -94,7 +94,7 @@ public class Cita {
 	
 	private void validarMinutosPermitidos(LocalTime hora, String mensaje) {
 		int horaDia = hora.getMinute();
-		if(horaDia != 0 && horaDia != 30) {
+		if(horaDia != MINUTOS_CERO && horaDia != MINUTOS_TREINTA) {
 			throw new ExcepcionValorInvalido(mensaje);
 		}
 	}

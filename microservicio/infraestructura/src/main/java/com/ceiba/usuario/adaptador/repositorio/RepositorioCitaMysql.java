@@ -27,6 +27,9 @@ public class RepositorioCitaMysql implements RepositorioCita {
 	
 	@SqlStatement(namespace = "cita", value = "existe")
 	private static String sqlExiste;
+	
+	@SqlStatement(namespace = "cita", value = "existePorId")
+	private static String sqlExistePorId;
 
 	public RepositorioCitaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
 		this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -58,6 +61,16 @@ public class RepositorioCitaMysql implements RepositorioCita {
 		parameterSource.addValue("hora", hora);
 		
 		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,  parameterSource, Boolean.class);
+	}
+	
+	@Override
+	public boolean existePorId(LocalDate fecha, LocalTime hora, Long id) {
+		MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+		parameterSource.addValue("fecha", fecha);
+		parameterSource.addValue("hora", hora);
+		parameterSource.addValue("id", id);
+		
+		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistePorId,  parameterSource, Boolean.class);
 	}
 	
 	

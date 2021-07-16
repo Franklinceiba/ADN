@@ -20,7 +20,7 @@ public class ServicioActualizarCita {
 	}
 	
 	private void validarExistenciaFechaHora(Cita cita) {
-		boolean existeRegistroFechaHora = this.repositorioCita.existe(cita.getFecha(), cita.getHora());
+		boolean existeRegistroFechaHora = this.repositorioCita.existePorId(cita.getFecha(), cita.getHora(), cita.getId());
 		if (existeRegistroFechaHora) {
 			throw new ExcepcionDuplicidad(CUPO_REGISTRADO_EN_EL_SISTEMA);
 		}
