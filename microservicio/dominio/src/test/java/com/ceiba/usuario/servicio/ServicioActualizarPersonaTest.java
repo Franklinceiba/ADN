@@ -17,7 +17,7 @@ public class ServicioActualizarPersonaTest {
         // arrange
 		Persona persona = new PersonaTestDataBuilder().build();
 		RepositorioPersona repositorioPersona = Mockito.mock(RepositorioPersona.class);
-		Mockito.when(repositorioPersona.existe(Mockito.any(), Mockito.any())).thenReturn(true);
+		Mockito.when(repositorioPersona.existePorActualizar(Mockito.any(), Mockito.any(), Mockito.any())).thenReturn(true);
 		ServicioActualizarPersona servicioActualizarPersona = new ServicioActualizarPersona(repositorioPersona);
 		// act - assert
         BasePrueba.assertThrows(() -> servicioActualizarPersona.ejecutar(persona), ExcepcionDuplicidad.class,"No se puede registrar la persona por que existe un registro con este documento");
