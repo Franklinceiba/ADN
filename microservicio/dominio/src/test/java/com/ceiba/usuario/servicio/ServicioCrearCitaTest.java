@@ -1,7 +1,6 @@
 package com.ceiba.usuario.servicio;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,11 +9,22 @@ import org.mockito.Mockito;
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
+import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.usuario.modelo.entidad.Cita;
 import com.ceiba.usuario.puerto.repositorio.RepositorioCita;
 import com.ceiba.usuario.servicio.testdatabuilder.CitaTestDataBuilder;
 
 public class ServicioCrearCitaTest {
+	
+	private static final String DESCRIPCION = "problemas en los ojos";
+	private static final LocalDate FECHA = LocalDate.of(2021, 7, 6);
+	private static final String HORA = "09:30:00";
+	private static final Long IDPERSONA = 1l;
+	private static final String CAMPO_DESCRIPCION_ES_OBLIGATORIO = "El campo descripcion es obligatorio no puede ir vacio";
+	private static final String CAMPO_FECHA_ES_OBLIGATORIO = "El campo fecha es obligatorio no puede ir vacio";
+	private static final String CAMPO_HORA_ES_OBLIGATORIO = "El campo hora es obligatorio no puede ir vacio";
+	private static final String CAMPO_ID_PERSONA_ES_OBLIGATORIO = "El campo id de la persona es obligatorio no puede ir vacio";
+	
 	
 	@Test
 	public void validarFechaNoPermitidaLunesAViernesNocturnoTest() {
@@ -104,6 +114,37 @@ public class ServicioCrearCitaTest {
 		BasePrueba.assertThrows(() -> citaTestDataBuilder.build(), ExcepcionValorInvalido.class, "No se permite estos minutos para solicitar cita, solo se permite a las :00 o :30");
 	}
 	
+	@Test
+	public void validarRequeridoDescripcionTest() {
+		// arrange
+		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder(null, FECHA, HORA, IDPERSONA);
+		// act - assert
+		BasePrueba.assertThrows(() -> citaTestDataBuilder.build(), ExcepcionValorObligatorio.class, CAMPO_DESCRIPCION_ES_OBLIGATORIO);
+	}
+	
+	@Test
+	public void validarRequeridoFechaTest() {
+		// arrange
+		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder(DESCRIPCION, null, HORA, IDPERSONA);
+		// act - assert
+		BasePrueba.assertThrows(() -> citaTestDataBuilder.build(), ExcepcionValorObligatorio.class, CAMPO_FECHA_ES_OBLIGATORIO);
+	}
+	
+	@Test
+	public void validarRequeridoHoraTest() {
+		// arrange
+		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder(DESCRIPCION, FECHA, null, IDPERSONA);
+		// act - assert
+		BasePrueba.assertThrows(() -> citaTestDataBuilder.build(), ExcepcionValorObligatorio.class, CAMPO_HORA_ES_OBLIGATORIO);
+	}
+	
+	@Test
+	public void validarRequeridoIdPersonaTest() {
+		// arrange
+		CitaTestDataBuilder citaTestDataBuilder = new CitaTestDataBuilder(DESCRIPCION, FECHA, HORA, null);
+		// act - assert
+		BasePrueba.assertThrows(() -> citaTestDataBuilder.build(), ExcepcionValorObligatorio.class, CAMPO_ID_PERSONA_ES_OBLIGATORIO);
+	}
 	
 	@Test
 	public void validarCitaValorLunesAViernesTest() {

@@ -1,7 +1,6 @@
 package com.ceiba.usuario.servicio;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 import org.junit.Assert;
 import org.junit.Test;

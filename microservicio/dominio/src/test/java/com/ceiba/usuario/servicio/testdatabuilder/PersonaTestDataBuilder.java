@@ -24,6 +24,19 @@ public class PersonaTestDataBuilder {
 		email = "franklin@gmail.com";
 	}
 	
+	public PersonaTestDataBuilder(String tipoDocumento, String documento, String nombre, String apellido,
+			LocalDate fechaNacimiento, String celular, String email) {
+		this.tipoDocumento = tipoDocumento;
+		this.documento = documento;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.fechaNacimiento = fechaNacimiento;
+		this.celular = celular;
+		this.email = email;
+	}
+
+
+
 	public PersonaTestDataBuilder conDocumento(String documento) {
 		this.documento = documento;
 		return this;

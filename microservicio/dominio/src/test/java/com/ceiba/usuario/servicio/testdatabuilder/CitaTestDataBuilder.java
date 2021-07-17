@@ -1,7 +1,6 @@
 package com.ceiba.usuario.servicio.testdatabuilder;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 import com.ceiba.usuario.modelo.entidad.Cita;
 
@@ -18,6 +17,15 @@ public class CitaTestDataBuilder {
 		idPersona = 1l;
 	}
 	
+	public CitaTestDataBuilder(String descripcion, LocalDate fecha, String hora, Long idPersona) {
+		this.descripcion = descripcion;
+		this.fecha = fecha;
+		this.hora = hora;
+		this.idPersona = idPersona;
+	}
+
+
+
 	public CitaTestDataBuilder conFechaYHora(LocalDate localDate, String localTime) {
 		this.fecha = localDate;
 		this.hora = localTime;
