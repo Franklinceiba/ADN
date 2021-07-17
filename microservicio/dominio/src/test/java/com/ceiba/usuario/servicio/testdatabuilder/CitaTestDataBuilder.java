@@ -10,7 +10,7 @@ public class CitaTestDataBuilder {
 	private Long id;
 	private String descripcion;
 	private LocalDate fecha;
-	private LocalTime hora;
+	private String hora;
 	private Long idPersona;
 	
 	public CitaTestDataBuilder() {
@@ -18,7 +18,7 @@ public class CitaTestDataBuilder {
 		idPersona = 1l;
 	}
 	
-	public CitaTestDataBuilder conFechaYHora(LocalDate localDate, LocalTime localTime) {
+	public CitaTestDataBuilder conFechaYHora(LocalDate localDate, String localTime) {
 		this.fecha = localDate;
 		this.hora = localTime;
 		return this;

@@ -17,7 +17,8 @@ public class ServicioCrearPersonaTest {
 	@Test
     public void validarPersonaExistenciaPreviaTest() {
         // arrange
-		Persona persona = new PersonaTestDataBuilder().build();
+		String documento = "324342423423";
+		Persona persona = new PersonaTestDataBuilder().conDocumento(documento).build();
 		RepositorioPersona repositorioPersona = Mockito.mock(RepositorioPersona.class);
 		Mockito.when(repositorioPersona.existe(Mockito.any(), Mockito.any())).thenReturn(true);
 		ServicioCrearPersona servicioCrearPersona = new ServicioCrearPersona(repositorioPersona);
@@ -28,7 +29,8 @@ public class ServicioCrearPersonaTest {
 	@Test
     public void validarPersonaTest() {
         // arrange
-		Persona persona = new PersonaTestDataBuilder().conId(1L).build();
+		String documento = "324342423423";
+		Persona persona = new PersonaTestDataBuilder().conId(1L).conDocumento(documento).build();
 		RepositorioPersona repositorioPersona = Mockito.mock(RepositorioPersona.class);
 		Mockito.when(repositorioPersona.existe(Mockito.any(), Mockito.any())).thenReturn(false);
 		ServicioCrearPersona servicioCrearPersona = new ServicioCrearPersona(repositorioPersona);

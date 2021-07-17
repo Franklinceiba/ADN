@@ -18,7 +18,7 @@ public class ServicioActualizarCitaTest {
 	@Test
 	public void validarCitaExistenciaPreviaTest() {
 		// arrange
-		Cita cita = new CitaTestDataBuilder().conId(1L).conFechaYHora(LocalDate.of(2021, 7, 6), LocalTime.of(15, 0)).build();
+		Cita cita = new CitaTestDataBuilder().conId(1L).conFechaYHora(LocalDate.of(2021, 7, 6), "15:00:00").build();
 		RepositorioCita repositorioCita = Mockito.mock(RepositorioCita.class);
 		Mockito.when(repositorioCita.existePorId(Mockito.any(), Mockito.any(),Mockito.any())).thenReturn(true);
 		ServicioActualizarCita servicioActualizarCita = new ServicioActualizarCita(repositorioCita);
@@ -29,7 +29,7 @@ public class ServicioActualizarCitaTest {
 	@Test
 	public void validarCitaTest() {
 		// arrange
-		Cita cita = new CitaTestDataBuilder().conId(1L).conFechaYHora(LocalDate.of(2021, 7, 6), LocalTime.of(15, 0)).build();
+		Cita cita = new CitaTestDataBuilder().conId(1L).conFechaYHora(LocalDate.of(2021, 7, 6), "15:00:00").build();
 		RepositorioCita repositorioCita = Mockito.mock(RepositorioCita.class);
 		Mockito.when(repositorioCita.existe(Mockito.any(), Mockito.any())).thenReturn(false);
 		ServicioActualizarCita servicioActualizarCita = new ServicioActualizarCita(repositorioCita);

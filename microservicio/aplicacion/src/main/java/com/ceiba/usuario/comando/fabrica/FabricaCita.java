@@ -1,7 +1,5 @@
 package com.ceiba.usuario.comando.fabrica;
 
-import java.time.LocalTime;
-
 import org.springframework.stereotype.Component;
 
 import com.ceiba.usuario.comando.ComandoCita;
@@ -15,7 +13,7 @@ public class FabricaCita {
 				comandoCita.getId(),
 				comandoCita.getDescripcion(),
 				comandoCita.getFecha(),
-				LocalTime.parse(comandoCita.getHora()),
+				comandoCita.getHora(),
 				comandoCita.getIdPersona()
 				);
 	}

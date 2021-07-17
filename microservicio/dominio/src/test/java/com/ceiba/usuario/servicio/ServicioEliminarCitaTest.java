@@ -16,7 +16,7 @@ public class ServicioEliminarCitaTest {
 	@Test
 	public void validarCitaEliminarTest() {
 		// arrange
-		Cita cita = new CitaTestDataBuilder().conId(1L).conFechaYHora(LocalDate.of(2021, 7, 6), LocalTime.of(15, 0)).build();
+		Cita cita = new CitaTestDataBuilder().conId(1L).conFechaYHora(LocalDate.of(2021, 7, 6), "15:00:00").build();
 		RepositorioCita repositorioCita = Mockito.mock(RepositorioCita.class);
 		ServicioEliminarCita servicioEliminarCita = new ServicioEliminarCita(repositorioCita);
 		Long id = 1L;
