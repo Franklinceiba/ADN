@@ -1,0 +1,39 @@
+version: '3'
+services:
+  docker-mysql:
+    restart: always
+    container_name: docker-mysql
+    image: mysql
+    environment:
+      MYSQL_DATABASE: consultoriofv
+      MYSQL_ROOT_PASSWORD: FVSM*1090482947
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+    ports:
+      - "6033:3306"
+    networks:
+      - consultorio-network
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=root--execute \"SHOW DATABASES;\""
+      interval: 2s
+      timeout: 20s
+      retries: 10
+  book-manager-app:
+    restart: on-failure
+    build: ./
+    expose:
+      - "8080"
+    ports:
+      - 8080:8080
+    networks:
+      - consultorio-network
+    environment:
+      SERVER_PORT: 8080
+      WAIT_HOSTS: mysql:3306
+      SPRING_DATASOURCE_JDBC-URL: jdbc:mysql://docker-mysql:3306/consultoriofv
+      
+    depends_on:
+      - docker-mysql
+networks:
+  consultorio-network:
