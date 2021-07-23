@@ -38,9 +38,12 @@ public class CreditRiskAssessment {
 	}// Cierre del metodo desviacion estandar
 
 	/**
+	 * Metodo que devuelve el indice mas alto de la anomalia con el pico mas alto en
+	 * el arreglo de los pagos tardios inusuales
 	 * 
-	 * @param paymentDelays
-	 * @return
+	 * @param paymentDelays El arreglo de los pagos tardios inusuales, con los
+	 *                      numeros de dias de retraso en los pagos
+	 * @return El indice de la anomalia con el pico mas alto en el arreglo
 	 */
 	public int paymentDelayMaxPeakIndex(int[] paymentDelays) {
 		int lengthVector = paymentDelays.length;
@@ -60,15 +63,20 @@ public class CreditRiskAssessment {
 				return i;
 			}
 			if (i != startVector && i != lengthVectorAntepenultimate) {
-					if ((paymentDelays[i] - paymentDelays[i - 1]) > previousDifference
-							&& (paymentDelays[i] - paymentDelays[i + 1]) > differenceAfter
-							&& paymentDelays[i] > paymentDelays[i - 1] && paymentDelays[i] > paymentDelays[i + 1]) {
-						previousDifference = paymentDelays[i] - paymentDelays[i - 1];
-						differenceAfter = paymentDelays[i] - paymentDelays[i + 1];
-						index = i;
-					}
+				index = this.validationVector(index, i, paymentDelays[i], paymentDelays[i - 1], paymentDelays[i + 1],
+						previousDifference, differenceAfter);
 			}
 		}
+		return index;
+	}
+	
+	public int validationVector(int index, int position, int presentValue, int previousValue, int valueAfter, int previousDifference, int differenceAfter) {
+		if ((presentValue - previousValue) > previousDifference
+				&& (presentValue - valueAfter) > differenceAfter
+				&& presentValue > previousValue && presentValue > valueAfter) {
+			return position;
+		}
+		
 		return index;
 	}
 
