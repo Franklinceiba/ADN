@@ -37,14 +37,14 @@ public class Cita {
 	private LocalTime hora;
 	private int valor;
 	private Long idPersona;
-	private HolidayUtil diaFestivo ;
+	private DiaFestivo diaFestivo ;
 	
 	public Cita(Long id, String descripcion, LocalDate fecha, String hora, Long idPersona) {
 		this.validarVacioDescripcion(descripcion);
 		this.validarVacioFecha(fecha);
 		this.validarVacioHora(hora);
 		this.validarVacioIdPersona(idPersona);
-		this.diaFestivo = new HolidayUtil(fecha.getYear());
+		this.diaFestivo = new DiaFestivo(fecha.getYear());
 		this.validarHorarioPermitidoLunesViernes(fecha, LocalTime.parse(hora), SOLO_SE_PERMITE_EL_SIGUIENTE_HORARIO_LUNES_A_VIERNES);
 		this.validarHorarioPermitidoFestivo(fecha, LocalTime.parse(hora), SOLO_SE_PERMITE_EL_SIGUIENTE_HORARIO_FESTIVOS);
 		this.validarFechaNoPermitida(fecha, NO_SE_PERMITE_LOS_SABADOS_Y_DOMINGOS);
@@ -61,7 +61,7 @@ public class Cita {
 	
 	private void validarHorarioPermitidoLunesViernes(LocalDate fecha, LocalTime hora, String mensaje) {
 		int mes = fecha.getMonthValue() - DESCONTAR_MES;
-		boolean validarFestivo = this.diaFestivo.isHoliday(mes, fecha.getDayOfMonth());
+		boolean validarFestivo = this.diaFestivo.esFestivo(mes, fecha.getDayOfMonth());
 		int horaDia = hora.getHour();
 		if (!validarFestivo && fueraHorarioOficina(horaDia)) {
 			throw new ExcepcionValorInvalido(mensaje);
@@ -102,7 +102,7 @@ public class Cita {
 	
 	private void validarHorarioPermitidoFestivo(LocalDate fecha, LocalTime hora, String mensaje) {
 		int mes = fecha.getMonthValue() - DESCONTAR_MES;
-		boolean validarFestivo = this.diaFestivo.isHoliday(mes, fecha.getDayOfMonth());
+		boolean validarFestivo = this.diaFestivo.esFestivo(mes, fecha.getDayOfMonth());
 		int horaDia = hora.getHour();
 		if (validarFestivo && (horaDia < HORARIO_MANANA || horaDia >= HORARIO_MEDIO_DIA)) {
 			throw new ExcepcionValorInvalido(mensaje);
@@ -118,7 +118,7 @@ public class Cita {
 	
 	private void calcularValor(LocalDate fecha) {
 		int mes = fecha.getMonthValue() - DESCONTAR_MES;
-		boolean validarFestivo = this.diaFestivo.isHoliday(mes, fecha.getDayOfMonth());
+		boolean validarFestivo = this.diaFestivo.esFestivo(mes, fecha.getDayOfMonth());
 		if (validarFestivo) {
 			this.valor = VALOR_FESTIVOS;
 		} else {
