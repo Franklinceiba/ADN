@@ -39,7 +39,7 @@ public class ServicioActualizarCitaTest {
 		// act - assert
 		Assert.assertEquals(cita.getIdPersona(), idPersona);
 		Assert.assertEquals(cita.getId(), id);
-		Assert.assertEquals(cita.getDiaFestivo().getano(), fecha);
+		Assert.assertEquals(cita.getDiaFestivo().getAno(), fecha);
 		
 	}
 }

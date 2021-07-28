@@ -90,7 +90,7 @@ public class DiaFestivo {
 		return this.festivos.contains(mes + ":" + dia);
 	}
 
-	public int getano() {
+	public int getAno() {
 		return ano;
 	}
 }
