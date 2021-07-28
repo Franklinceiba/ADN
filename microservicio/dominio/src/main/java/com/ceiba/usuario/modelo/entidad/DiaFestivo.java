@@ -41,7 +41,7 @@ public class DiaFestivo {
 		this.calcularEmiliani(10, 11); // Independencia de cartagena 11 de noviembre
 		this.calcularOtroFestivo(-3, false); // jueves santos
 		this.calcularOtroFestivo(-2, false); // viernes santo
-		this.calcularOtroFestivo(40, true); // Asención del señor de pascua
+		this.calcularOtroFestivo(40, true); // Asencion del senor de pascua
 		this.calcularOtroFestivo(60, true); // Corpus cristi
 		this.calcularOtroFestivo(68, true); // Sagrado corazon
 	}
